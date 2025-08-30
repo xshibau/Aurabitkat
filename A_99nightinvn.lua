@@ -4,7 +4,6 @@ local UI = SkUI:CreateWindow("SkUI V1.52 - By Ziugpro")
 
 local Tab = UI:Create(105, "Tổng Quan")
 local Fire = UI:Create(145, "Lửa Trại + Tạo")
-local Web = UI:Create(110, "Webhook")
 Tab:AddTextLabel("Left", "Chest")
 Tab:AddToggle("Left", "Tự Động Mở Rương (Auto)", false, function(v)
     local Players = game:GetService("Players")
@@ -241,57 +240,6 @@ Tab:AddToggle("Left", "Giết Aura (Thử Nghiệm)", false, function(v)
         end)
     else
         _G.KillAura.running = false
-    end
-end)
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local char = player.Character or player.CharacterAdded:Wait()
-local humanoid = char:WaitForChild("Humanoid")
-
-local selectedTool = nil
-
-Tab:AddMultiDropdown("Left", "Chọn Vũ Khí", {}, {}, function(choices)
-    for _, tool in ipairs(player.Backpack:GetChildren()) do
-        if tool:IsA("Tool") and table.find(choices, tool.Name) then
-            selectedTool = tool.Name
-        end
-    end
-end)
-
-Tab:AddToggle("Left", "Tự Động Cày", false, function(v)
-    if not _G.AutoFarm then
-        _G.AutoFarm = {running = false}
-    end
-    if v then
-        if _G.AutoFarm.running then return end
-        _G.AutoFarm.running = true
-        task.spawn(function()
-            while _G.AutoFarm.running do
-                local tool = player.Backpack:FindFirstChild(selectedTool) or char:FindFirstChild(selectedTool)
-                if tool and humanoid then
-                    humanoid:EquipTool(tool)
-                end
-                for _, mob in ipairs(workspace:GetDescendants()) do
-                    local hum = mob:FindFirstChildOfClass("Humanoid")
-                    local hrp = mob:FindFirstChild("HumanoidRootPart")
-                    if hum and hrp and hum.Health > 0 then
-                        char:MoveTo(hrp.Position + Vector3.new(0, 3, 0))
-                        if char:FindFirstChild(selectedTool) then
-                            char[selectedTool]:Activate()
-                        end
-                        while hum.Health > 0 and _G.AutoFarm.running do
-                            if char:FindFirstChild(selectedTool) then
-                                char[selectedTool]:Activate()
-                            end
-                            task.wait(1)
-                        end
-                    end
-                end
-                task.wait(0.2)
-            end
-        end)
-    else
-        _G.AutoFarm.running = false
     end
 end)
 Tab:AddTextLabel("Left", "Bay")
