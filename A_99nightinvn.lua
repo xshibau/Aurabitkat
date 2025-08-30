@@ -2,8 +2,32 @@ local SkUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/xshibau/
 
 local UI = SkUI:CreateWindow("SkUI V1.52 - By Ziugpro")
 
+local Info = UI:Create(105, "Thông Tin")
 local Tab = UI:Create(105, "Tổng Quan")
 local Fire = UI:Create(145, "Lửa Trại + Tạo")
+Info:AddTextLabel("Left", "Ziugpro - Onwer")
+Info:AddButton("Left", "Discord", function()
+setclipboard("https://discord.gg/EBNW7WjY");
+end)
+Info:AddButton("Left", "Email", function()
+setclipboard("ziugpro@gmail.com");
+end)
+Info:AddButton("Left", "Facebook: Không Sài", function()
+setclipboard("");
+end)
+
+Info:AddTextLabel("Right", "Hoàng Đức - Support")
+Info:AddButton("Right", "Discord", function()
+setclipboard("https://discord.gg/EBNW7WjY");
+end)
+Info:AddButton("Right", "Email", function()
+setclipboard("dhhackgod@gmail.com");
+end)
+Info:AddButton("Right", "Facebook", function()
+setclipboard("https://www.facebook.com/share/19M1A5W76Y/");
+end)
+
+
 Tab:AddTextLabel("Left", "Chest")
 Tab:AddToggle("Left", "Tự Động Mở Rương (Auto)", false, function(v)
     local Players = game:GetService("Players")
