@@ -463,36 +463,6 @@ Tab:AddToggle("Left", "Bất Tử", false, function(v)
     end
 end)
 Tab:RealLine("Left")
-Tab:AddTextLabel("Right", "Vật Phẩm")
-local selectedModel = "Carrot"
-
-Tab:AddMultiDropdown("Right", "Chọn Vật Phẩm", {"Carrot", "Morsel", "Tree", "Bunny", "Log", "Rife"}, "Carrot", function(choice)
-    selectedModel = choice
-end)
-
-Tab:AddButton("Right", "Mang Vật Phẩm", function()
-    local player = game.Players.LocalPlayer
-    if not player or not player.Character then return end
-
-    local rootPart = player.Character:FindFirstChild("HumanoidRootPart")
-    if not rootPart then return end
-
-    local model = workspace:FindFirstChild(selectedModel)
-    if model and model:IsA("Model") then
-        if not model.PrimaryPart then
-            local found = false
-            for _, part in pairs(model:GetDescendants()) do
-                if part:IsA("BasePart") then
-                    model.PrimaryPart = part
-                    found = true
-                    break
-                end
-            end
-            if not found then return end
-        end
-        model:SetPrimaryPartCFrame(rootPart.CFrame * CFrame.new(0, 0, -5))
-    end
-end)
 Tab:AddTextLabel("Right", "Cây")
 local UIS = game:GetService("UserInputService")
 local player = game.Players.LocalPlayer
