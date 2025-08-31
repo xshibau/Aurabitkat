@@ -1,4 +1,37 @@
-local SkUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/xshibau/Aurabitka/refs/heads/main/SkUI_v1.52.lua"))()
+local HttpService = game:GetService("HttpService")
+local SaveFileName = "UISettings.json"
+
+local function ReadFileSafe(path)
+    local success, content = pcall(function() return readfile(path) end)
+    return success and content or nil
+end
+
+local function WriteFileSafe(path, content)
+    pcall(function() writefile(path, content) end)
+end
+
+local function DecodeJSONSafe(jsonStr)
+    local success, data = pcall(function() return HttpService:JSONDecode(jsonStr) end)
+    return success and type(data) == "table" and data or {}
+end
+
+local function EncodeJSONSafe(data)
+    local success, jsonStr = pcall(function() return HttpService:JSONEncode(data) end)
+    return success and jsonStr or ""
+end
+
+local SettingsData = DecodeJSONSafe(ReadFileSafe(SaveFileName))
+
+local function LoadSetting(key, default)
+    return SettingsData[key] ~= nil and SettingsData[key] or default
+end
+
+local function SaveSetting(key, value)
+    SettingsData[key] = value
+    WriteFileSafe(SaveFileName, EncodeJSONSafe(SettingsData))
+end
+
+local SkUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/ziugpro/Tool-Hub/refs/heads/main/Tool-Hub-Ui"))()
 
 local UI = SkUI:CreateWindow("SkUI V1.52 - By Ziugpro")
 
