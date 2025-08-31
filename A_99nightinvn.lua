@@ -31,7 +31,7 @@ local function SaveSetting(key, value)
     WriteFileSafe(SaveFileName, EncodeJSONSafe(SettingsData))
 end
 
-local SkUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/ziugpro/Tool-Hub/refs/heads/main/Tool-Hub-Ui"))()
+local SkUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/xshibau/Aurabitka/refs/heads/main/SkUI_v1.52.lua"))()
 
 local UI = SkUI:CreateWindow("SkUI V1.52 - By Ziugpro")
 
