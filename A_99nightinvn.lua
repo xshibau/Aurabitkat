@@ -5,6 +5,8 @@ local UI = SkUI:CreateWindow("SkUI V1.52 - By Ziugpro")
 local Info = UI:Create(105, "Thông Tin")
 local Tab = UI:Create(105, "Tổng Quan")
 local Fire = UI:Create(145, "Lửa Trại + Tạo")
+local Web = UI:Create(120, "Webhook")
+
 Info:AddTextLabel("Left", "Ziugpro - Onwer")
 Info:AddButton("Left", "Discord", function()
 setclipboard("https://discord.gg/EBNW7WjY");
@@ -1053,3 +1055,58 @@ Fire:AddToggle("Right", "Tự Động Đinh Tán (Dịch Chuyển)", false, func
     end
 end)
 Fire:RealLine("Right")
+
+
+local name = LoadSetting("Webhook", "Url")
+
+Web:AddTextbox("Left", "Webhook", name, function(text)
+    SaveSetting("Webhook", text)
+end)
+local current = LoadSetting("Start Webhook", false)
+
+if current then
+end
+
+Web:AddToggle("Left", "Start Webhook", current, function(v)
+    SaveSetting("Start Webhook", v)
+    if v then
+    else
+    end
+end)
+Web:RealLine("Left")
+
+
+local current = LoadSetting("When You Kill Mob", false)
+
+if current then
+end
+
+Web:AddToggle("Right", "When You Kill Mob", current, function(v)
+    SaveSetting("When You Kill Mob", v)
+    if v then
+    else
+    end
+end)
+local current = LoadSetting("When To Night 1000", false)
+
+if current then
+end
+
+Web:AddToggle("Right", "When To Night 1000", current, function(v)
+    SaveSetting("When To Night 1000", v)
+    if v then
+    else
+    end
+end)
+local current = LoadSetting("When You Die", false)
+
+if current then
+end
+
+Web:AddToggle("Right", "When You Die", current, function(v)
+    SaveSetting("When You Die", v)
+    if v then
+    else
+    end
+end)
+Web:RealLine("Right")
