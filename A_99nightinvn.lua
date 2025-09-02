@@ -33,7 +33,7 @@ end
 
 local SkUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/xshibau/Aurabitka/refs/heads/main/SkUI_v1.72.lua"))()
 
-local UI = SkUI:CreateWindow("SkUI V1.52 - By Ziugpro")
+local UI = SkUI:CreateWindow("SkUI V1.72 - By Ziugpro")
 
 local Info = UI:Create(105, "Thông Tin")
 local Tab = UI:Create(105, "Tổng Quan")
