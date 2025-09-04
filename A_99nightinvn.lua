@@ -1,1 +1,16 @@
-loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/a0130f677b9f53b4fdbb0dd7db856a35.lua"))()
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Aura Hub Freemium",
+    Text = "Failed to load script",
+    Icon = "rbxthumb://type=Asset&id=131484641795167&w=420&h=420",
+    Duration = 5,
+    Callback = function()
+    end
+})
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Aura Hub Freemium",
+    Text = "Script load failed server down",
+    Icon = "rbxthumb://type=Asset&id=131484641795167&w=420&h=420",
+    Duration = 5,
+    Callback = function()
+    end
+})
